@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - SKIN CANCER APP</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            background-color: #f2f8f5; /* Même vert très clair */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .text-success-custom {
+            color: #198754;
+        }
+        .action-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background-color: #e8f5e9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .btn-logout {
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+        .btn-logout:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar sticky-top shadow-sm mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success-custom d-flex align-items-center" href="#">
+                <i class="bi bi-shield-plus me-2"></i>
+                <span class="text-uppercase tracking-wide" style="font-size: 1.1rem;">Skin Cancer App</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <span class="me-3 d-none d-md-inline text-muted small">
+                    <i class="bi bi-person-circle me-1"></i> {{ username if username else 'Utilisateur' }}
+                </span>
+                <a href="{{ url_for('logout') }}" class="btn btn-sm btn-logout fw-bold px-3">
+                    <i class="bi bi-box-arrow-right me-1"></i> Déconnexion
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold text-secondary">Bienvenue sur votre espace</h2>
+                <p class="text-muted">Sélectionnez une action pour commencer.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card action-card shadow-sm h-100" onclick="window.location.href='{{ url_for('predict_page') }}'">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bi bi-plus-circle-fill text-success-custom fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Nouvelle Analyse</h4>
+                        <p class="text-muted small">Scanner une nouvelle lésion cutanée pour obtenir un diagnostic immédiat.</p>
+                        <span class="btn btn-outline-success btn-sm mt-2 fw-bold">Commencer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card action-card shadow-sm h-100" onclick="window.location.href='{{ url_for('patients_history') }}'">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box mx-auto">
+                            <i class="bi bi-people-fill text-success-custom fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Patients</h4>
+                        <p class="text-muted small">Consulter l'historique des analyses, les rapports et le suivi des patients.</p>
+                        <span class="btn btn-outline-success btn-sm mt-2 fw-bold">Consulter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-4 d-none d-lg-block">
+                <div class="card border-0 bg-success text-white rounded-4 p-3 shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold"><i class="bi bi-info-circle me-2"></i>Note Importante</h5>
+                        <hr class="border-white">
+                        <p class="small opacity-75">
+                            Cette application utilise l'IA pour l'aide au diagnostic. En cas de doute, consultez toujours un dermatologue spécialisé.
+                        </p>
+                        <ul class="list-unstyled small">
+                            <li><i class="bi bi-check2-circle me-1"></i> Images haute résolution</li>
+                            <li><i class="bi bi-check2-circle me-1"></i> Éclairage uniforme</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

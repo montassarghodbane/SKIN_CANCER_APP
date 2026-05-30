@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Analyse - SKIN CANCER APP</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            background-color: #f2f8f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .text-success-custom {
+            color: #198754;
+        }
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+        .btn-success:hover {
+            background-color: #146c43;
+            border-color: #13653f;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar sticky-top shadow-sm mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success-custom d-flex align-items-center" href="{{ url_for('dashboard') }}">
+                <i class="bi bi-shield-plus me-2"></i>
+                <span class="text-uppercase tracking-wide" style="font-size: 1.1rem;">Skin Cancer App</span>
+            </a>
+            <div>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-outline-secondary fw-bold px-3 me-2">
+                    <i class="bi bi-arrow-left me-1"></i> Retour
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                
+                <div class="card shadow border-0 rounded-3 mb-5">
+                    <div class="card-body p-4">
+                        
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-success text-white rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                <i class="bi bi-plus-lg fs-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0 text-secondary" style="font-size: 1.4rem;">Nouvelle Analyse</h3>
+                                <small class="text-muted">Saisissez les informations et importez la photo de la lésion.</small>
+                            </div>
+                        </div>
+
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+
+                        <form action="{{ url_for('submit_analysis') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            
+                            <div class="mb-3">
+                                <label for="patient_name" class="form-label text-muted small fw-bold">Nom du Patient</label>
+                                <input type="text" class="form-control" id="patient_name" name="patient_name" placeholder="Ex: Jean Dupont" required>
+                                <div class="invalid-feedback">
+                                    Veuillez renseigner le nom du patient.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="patient_age" class="form-label text-muted small fw-bold">Âge</label>
+                                <input type="number" class="form-control" id="patient_age" name="patient_age" placeholder="Ex: 45" min="0" max="120" required>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer un âge valide (entre 0 et 120 ans).
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="lesion_image" class="form-label text-muted small fw-bold">Photo de la lésion cutanée</label>
+                                <input type="file" class="form-control" id="lesion_image" name="lesion_image" accept="image/*" required>
+                                <div class="form-text text-muted small">
+                                    <i class="bi bi-info-circle me-1"></i> Formats acceptés : JPG, PNG. Assurez-vous que l'image soit nette et bien éclairée.
+                                </div>
+                                <div class="invalid-feedback">
+                                    Veuillez sélectionner une image pour l'analyse.
+                                </div>
+                            </div>
+                            
+                            <div class="row g-2 pt-2">
+                                <div class="col-6">
+                                    <a href="{{ url_for('dashboard') }}" class="btn btn-light w-100 py-2 fw-bold text-muted">Annuler</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-success w-100 py-2 fw-bold">
+                                        <i class="bi bi-cpu me-1"></i> Lancer l'analyse
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
