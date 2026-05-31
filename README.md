@@ -1,3 +1,6 @@
+[![Demonstration de l'application](static/uploads/login.png)](https://drive.google.com/file/d/1rvUykfPpx25QyNDN_ROdvFwrA7vSMgzv/view?usp=sharing)
+*Cliquez sur l'image ci-dessus pour lancer la video de demonstration complete.*
+
 Application Clinique de Detection du Cancer de la Peau par Vision Transformer (ViT)
 
 Cette application web medicale avancee combine la puissance des Vision Transformers (ViT) et un backend robuste sous Flask pour offrir un outil d'aide a la decision clinique. Elle permet aux dermatologues et professionnels de sante d'analyser des images de lesions cutanees suspectes afin d'evaluer rapidement la probabilite qu'elles soient benignes ou malignes.
